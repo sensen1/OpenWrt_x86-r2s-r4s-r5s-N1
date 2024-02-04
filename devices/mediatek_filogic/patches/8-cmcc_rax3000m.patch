@@ -61,7 +61,8 @@
  define Device/confiabits_mt7981
    DEVICE_VENDOR := Confiabits
    DEVICE_MODEL := MT7981
-
+diff --git a/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dtso b/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dts
+similarity index 94%
 rename from target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dtso
 rename to target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dts
 index ff94a550fd624..1b78b660d3972 100644
@@ -88,7 +89,8 @@ index ff94a550fd624..1b78b660d3972 100644
  				partitions {
  					compatible = "fixed-partitions";
  					#address-cells = <1>;
-
+diff --git a/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dtso b/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dts
+similarity index 94%
 rename from target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dtso
 rename to target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dts
 index c1c9c75c271ae..8824208491c77 100644
@@ -100,7 +102,7 @@ index c1c9c75c271ae..8824208491c77 100644
  /dts-v1/;
 -/plugin/;
 +
-+#include "mt7981b-cmcc-rax3000m.dtsi"
++#include "mt7981b-cmcc-rax3000m.dts"
  
  / {
  	compatible = "cmcc,rax3000m", "mediatek,mt7981";
