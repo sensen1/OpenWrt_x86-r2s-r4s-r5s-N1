@@ -1,13 +1,14 @@
 --- a/target/linux/mediatek/image/filogic.mk
 +++ b/target/linux/mediatek/image/filogic.mk
-@@ -251,37 +251,37 @@ TARGET_DEVICES += cetron_ct3003
+@@ -251,37 +251,36 @@ TARGET_DEVICES += cetron_ct3003
  
  define Device/cmcc_rax3000m
    DEVICE_VENDOR := CMCC
 -  DEVICE_MODEL := RAX3000M
-+  DEVICE_MODEL := RAX3000M NAND
-   DEVICE_DTS := mt7981b-cmcc-rax3000m
+-  DEVICE_DTS := mt7981b-cmcc-rax3000m
 -  DEVICE_DTS_OVERLAY := mt7981b-cmcc-rax3000m-emmc mt7981b-cmcc-rax3000m-nand
++  DEVICE_MODEL := RAX3000M NAND
++  DEVICE_DTS := mt7981b-cmcc-rax3000m-nand
    DEVICE_DTS_DIR := ../dts
 -  DEVICE_DTC_FLAGS := --pad 4096
 -  DEVICE_DTS_LOADADDR := 0x43f00000
@@ -24,7 +25,7 @@
 +  IMAGE_SIZE := 116736k
    KERNEL_IN_UBI := 1
 -  UBOOTENV_IN_UBI := 1
-   IMAGES := sysupgrade.itb
+-  IMAGES := sysupgrade.itb
 -  IMAGE_SIZE := $$(shell expr 64 + $$(CONFIG_TARGET_ROOTFS_PARTSIZE))m
 -  IMAGE/sysupgrade.itb := append-kernel | \
 -	 fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | \
@@ -61,9 +62,22 @@
    DEVICE_VENDOR := Confiabits
    DEVICE_MODEL := MT7981
 
+rename from target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dtso
+rename to target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dts
+index ff94a550fd624..1b78b660d3972 100644
 --- a/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dtso
-+++ b/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dtso
-@@ -63,6 +63,10 @@
++++ b/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand.dts
+@@ -1,7 +1,8 @@
+ // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+ 
+ /dts-v1/;
+-/plugin/;
++
++#include "mt7981b-cmcc-rax3000m.dts"
+ 
+ / {
+ 	compatible = "cmcc,rax3000m", "mediatek,mt7981";
+@@ -63,6 +64,10 @@
  				spi-tx-bus-width = <4>;
  				spi-rx-bus-width = <4>;
  
@@ -74,3 +88,19 @@
  				partitions {
  					compatible = "fixed-partitions";
  					#address-cells = <1>;
+
+rename from target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dtso
+rename to target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dts
+index c1c9c75c271ae..8824208491c77 100644
+--- a/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dtso
++++ b/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc.dts
+@@ -1,7 +1,8 @@
+ // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+ 
+ /dts-v1/;
+-/plugin/;
++
++#include "mt7981b-cmcc-rax3000m.dtsi"
+ 
+ / {
+ 	compatible = "cmcc,rax3000m", "mediatek,mt7981";
